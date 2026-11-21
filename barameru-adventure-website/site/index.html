@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barameru Adventure | Sewa Alat Camping & Mendaki di Yogyakarta</title>
+  <meta name="description" content="Barameru Adventure (Barameru Outdoor) – tempat sewa alat camping dan mendaki di Yogyakarta sejak 2023. Tenda, carrier, sleeping bag, paket gunung, dan perlengkapan outdoor lengkap.">
+  <meta name="keywords" content="sewa alat camping jogja, sewa alat gunung jogja, barameru adventure, barameru outdoor, rental tenda yogyakarta">
+
+  <link rel="icon" href="assets/img/logo.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap + Icons + AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- CSS utama -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Tambahan CSS untuk revisi (panah struktur, logo tentang, tombol produk) -->
+  <style>
+    /* ---- Struktur organisasi: panah dari Pemilik ke 3 bagian ---- */
+    .org-stem { width: 2px; height: 26px; background: #1f6b45; margin: 0 auto; }
+    .org-conn { position: relative; height: 46px; }
+    .org-conn::after {               /* garis vertikal */
+      content: ""; position: absolute; left: 50%; top: 0; bottom: 8px;
+      width: 2px; margin-left: -1px; background: #1f6b45;
+    }
+    .org-conn .ah {                  /* kepala panah */
+      position: absolute; left: 50%; bottom: 0; margin-left: -8px;
+      border-left: 8px solid transparent; border-right: 8px solid transparent;
+      border-top: 11px solid #1f6b45;
+    }
+    @media (min-width: 992px) {
+      .org-conn::before {            /* garis horizontal */
+        content: ""; position: absolute; top: 0; left: -12px; right: -12px;
+        height: 2px; background: #1f6b45;
+      }
+      .org-branch:first-child .org-conn::before { left: 50%; }
+      .org-branch:last-child .org-conn::before { right: 50%; }
+    }
+    @media (max-width: 991.98px) {
+      .org-conn { height: 40px; }
+    }
+    .org-card.simple { padding-bottom: 1.5rem; }
+    .org-card.simple h5 { margin-bottom: 0; }
+
+    /* ---- Tentang: dua kartu sejajar & sama tinggi ---- */
+    .about-card {
+      background: #fff; border-radius: 16px; padding: 28px; height: 100%;
+      box-shadow: 0 8px 26px rgba(0,0,0,.08);
+    }
+    .about-row > [class*="col-"] { display: flex; }
+    .about-row .about-card { width: 100%; }
+    .about-card .timeline { max-width: none; margin: 0; }
+    .about-card .tl-item:last-child { margin-bottom: 0; }
+    .about-card { display: flex; flex-direction: column; }
+
+    /* galeri foto: mengisi sisa tinggi kartu agar tidak ada ruang kosong */
+    .about-gallery {
+      flex: 1 1 auto; min-height: 190px; margin-top: 22px;
+      display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 10px;
+    }
+    .about-gallery img {
+      width: 100%; height: 100%; min-height: 190px; object-fit: cover;
+      border-radius: 12px; display: block;
+    }
+    @media (max-width: 575.98px) {
+      .about-gallery { grid-template-columns: 1fr 1fr; }
+      .about-gallery img:last-child { grid-column: 1 / -1; min-height: 150px; }
+    }
+
+    /* ---- Sejarah singkat: garis & titik lurus, teks justify ---- */
+    .about-card .timeline { border-left: 0; padding-left: 30px; }
+    .about-card .tl-item::before {      /* titik tepat di tengah garis */
+      left: -31.5px; top: 12.5px; transform: translate(-50%, -50%); z-index: 2;
+    }
+    .about-card .tl-item::after {       /* garis dari titik ini ke titik berikutnya */
+      content: ""; position: absolute; left: -31.5px; top: 12.5px; bottom: -40.5px;
+      width: 3px; transform: translateX(-50%); background: var(--green-500); z-index: 1;
+    }
+    .about-card .tl-item:last-child::after { display: none; }
+    .tl-body p { text-align: justify; text-justify: inter-word; }
+
+    /* ---- Kontak: kartu medsos menyesuaikan tinggi form ---- */
+    @media (min-width: 992px) {
+      .contact-col .row { flex-direction: column; flex-wrap: nowrap; height: 100%; }
+      .contact-col .row > .col-12 { flex: 1 1 0; width: 100%; }
+      .contact-col .contact-item { height: 100%; align-items: center; }
+    }
+
+    /* ---- Produk: sembunyikan tombol sewa pada kartu ---- */
+    #productGrid .btn,
+    #productGrid .bi-whatsapp { display: none !important; }
+
+    /* ---- Semua teks memakai satu font (Poppins) ---- */
+    :root { --default-font: 'Poppins', sans-serif; --heading-font: 'Poppins', sans-serif; }
+    body, body * { font-family: 'Poppins', sans-serif !important; }
+
+    /* ---- Ukuran judul & subjudul seragam di semua section ---- */
+    .section-title h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; }
+    .section-title p  { font-size: 1rem; font-weight: 400; }
+    .section h3       { font-size: 1.5rem; font-weight: 600; line-height: 1.35; }
+    .section h4       { font-size: 1.2rem; font-weight: 600; }
+    .section h5       { font-size: 1.05rem; font-weight: 600; }
+    @media (max-width: 575.98px) {
+      .section-title h2 { font-size: 1.6rem; }
+      .section h3       { font-size: 1.25rem; }
+    }
+
+    /* ---- Garis kuning kecil di bawah judul section dihapus ---- */
+    .section-title::before, .section-title::after,
+    .section-title h2::before, .section-title h2::after,
+    .section-title p::before, .section-title p::after {
+      content: none !important; display: none !important;
+    }
+
+    /* ---- Kotak struktur: dikecilkan & dipasin ---- */
+    .org-card.simple {
+      width: 100%; max-width: 230px !important;
+      margin-left: auto; margin-right: auto;
+      padding: 1.25rem 1rem !important; height: auto !important;
+    }
+    .org-card.simple .avatar { margin-left: auto; margin-right: auto; }
+
+    /* ---- Tombol scroll ke atas disembunyikan ---- */
+    #scrollTop, .scroll-top { display: none !important; }
+
+    /* ---- Alamat di Lokasi rata kanan-kiri ---- */
+    .info-box p { text-align: justify; text-justify: inter-word; }
+
+    /* ---- FAQ ---- */
+    .faq-list { --bs-accordion-border-color: transparent; }
+    .faq-item {
+      border: 1px solid rgba(0,0,0,.08) !important; border-radius: 12px !important;
+      overflow: hidden; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+    .faq-item .accordion-button {
+      font-size: 1rem; font-weight: 600; padding: 1rem 1.25rem; box-shadow: none;
+    }
+    .faq-item .accordion-button:not(.collapsed) {
+      color: #1f6b45; background: rgba(31,107,69,.08);
+    }
+    .section .faq-item .accordion-header { font-size: 1rem; margin: 0; line-height: 1.4; }
+    .faq-item .accordion-button:focus { box-shadow: none; }
+    .faq-item .accordion-body { font-size: .95rem; padding: 1rem 1.25rem 1.25rem; }
+
+    /* ---- Teks rata kanan-kiri (justify) ---- */
+    .text-justify { text-align: justify; text-justify: inter-word; }
+
+    /* ---- Jam operasional: tanpa kotak putih ---- */
+    .info-box .table,
+    .info-box .table > :not(caption) > * > * {
+      --bs-table-bg: transparent;
+      --bs-table-bg-type: transparent;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* ---- Produk: sembunyikan label "Hemat" ---- */
+    #productGrid :is(.badge, .ribbon, [class*="badge"], [class*="ribbon"], [class*="hemat"]) {
+      display: none !important;
+    }
+
+    /* ---- Produk: nama barang dan harga rata tengah (align center) ---- */
+    #productGrid :is(div, h3, h4, h5, h6, p, span, small, strong) {
+      text-align: center;
+    }
+    #productGrid :is(div, h3, h4, h5, h6, p) {
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header id="header" class="header fixed-top">
+    <div class="container d-flex align-items-center">
+      <a href="#hero" class="logo d-flex align-items-center me-auto text-decoration-none">
+        <img src="assets/img/logo.jpg" alt="Logo Barameru" class="logo-img">
+        <span class="sitename">Barameru <span>Adventure</span></span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Beranda</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#struktur">Struktur</a></li>
+          <li><a href="#produk">Katalog</a></li>
+          <li><a href="#lokasi">Lokasi</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="row align-items-center gy-5">
+          <div class="col-lg-6" data-aos="fade-up">
+            <span class="badge-pill"><i class="bi bi-geo-alt-fill"></i> Yogyakarta</span>
+            <h1>Siap Mendaki?<br>Kami Siapkan <span>Alatnya.</span></h1>
+            <p class="lead-text text-justify">
+              Barameru Adventure menyewakan perlengkapan camping dan mendaki gunung
+              yang lengkap, terawat, dan harganya bersahabat untuk petualangan Anda.
+            </p>
+            <div class="open-status mt-4" id="openStatus">
+              <span class="dot"></span> <span id="openStatusText">Memeriksa jam buka…</span>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center" data-aos="zoom-in" data-aos-delay="150">
+            <img src="assets/img/logo.jpg" class="hero-img" alt="Barameru Outdoor">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STATISTIK ===================== -->
+    <section class="stats">
+      <div class="container">
+        <div class="row gy-4 text-center">
+          <div class="col-6 col-lg-3" data-aos="fade-up">
+            <i class="bi bi-star-fill"></i>
+            <h3><span class="counter" data-target="5" data-decimal="1">0</span></h3>
+            <p>Rating Google Maps</p>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <i class="bi bi-chat-heart-fill"></i>
+            <h3><span class="counter" data-target="762">0</span></h3>
+            <p>Ulasan Pelanggan</p>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-backpack4-fill"></i>
+            <h3><span class="counter" data-target="20" data-plus="true">0</span></h3>
+            <p>Jenis Alat Tersedia</p>
+          </div>
+          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+            <i class="bi bi-calendar-check-fill"></i>
+            <!-- Tahun ditulis statis agar tampil 2023 (tanpa titik pemisah ribuan) -->
+            <h3>2023</h3>
+            <p>Tahun Berdiri</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TENTANG & SEJARAH ===================== -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Tentang Kami</h2>
+          <p>Profil & Sejarah Barameru Adventure</p>
+        </div>
+
+        <div class="row g-4 about-row">
+          <!-- Kiri: Tentang Kami -->
+          <div class="col-lg-6" data-aos="fade-up">
+            <div class="about-card">
+              <h3 class="mb-3">Teman Perjalanan Para Pendaki di Yogyakarta</h3>
+              <p class="text-justify">
+                <strong>Barameru Adventure</strong> (dikenal juga sebagai <em>Barameru Outdoor</em>) adalah usaha
+                penyewaan alat camping dan mendaki yang berlokasi di Yogyakarta. Kami melayani pendaki, pecinta alam,
+                mahasiswa, hingga keluarga yang ingin berkemah tanpa harus membeli perlengkapan sendiri.
+              </p>
+              <p class="text-justify">
+                Dari tenda, carrier, sleeping bag, kompor, hingga paket lengkap untuk pendakian gunung,
+                semuanya tersedia dengan harga yang terjangkau.
+              </p>
+              <ul class="check-list mb-0">
+                <li><i class="bi bi-check-circle-fill"></i> Peralatan lengkap untuk camping & pendakian</li>
+                <li><i class="bi bi-check-circle-fill"></i> Tersedia paket hemat untuk 2, 3, dan 4 orang</li>
+                <li><i class="bi bi-check-circle-fill"></i> Rating sempurna 5,0 dari 762 ulasan di Google Maps</li>
+                <li><i class="bi bi-check-circle-fill"></i> Buka setiap hari, hingga pukul 21.00 WIB</li>
+              </ul>
+              <div class="about-gallery">
+                <img src="assets/img/tentang/galeri-1.jpg" alt="Jalur pendakian" loading="lazy">
+                <img src="assets/img/tentang/galeri-2.jpg" alt="Puncak gunung" loading="lazy">
+                <img src="assets/img/tentang/galeri-3.jpg" alt="Pemandangan gunung" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Kanan: Sejarah Singkat -->
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-card">
+              <h3 class="mb-3">Sejarah Singkat</h3>
+              <div class="timeline">
+                <div class="tl-item">
+                  <div class="tl-date">10 Agustus 2023</div>
+                  <div class="tl-body">
+                    <h5>Barameru Adventure Berdiri</h5>
+                    <p>Usaha penyewaan alat camping dan mendaki resmi dibuka di Yogyakarta untuk melayani kebutuhan perlengkapan outdoor.</p>
+                  </div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-date">Perkembangan</div>
+                  <div class="tl-body">
+                    <h5>Koleksi Alat Bertambah</h5>
+                    <p>Katalog berkembang mencakup tenda, tas carrier, sleeping bag, perlengkapan masak, penerangan, hingga pakaian dan sepatu gunung.</p>
+                  </div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-date">Kini</div>
+                  <div class="tl-body">
+                    <h5>Dipercaya Ratusan Pelanggan</h5>
+                    <p>Meraih rating 5,0 dari 762 ulasan di Google Maps dan aktif melayani pelanggan lewat WhatsApp, Instagram, dan TikTok.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STRUKTUR ORGANISASI ===================== -->
+    <section id="struktur" class="section bg-soft">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Struktur Organisasi</h2>
+          <p>Tim di Balik Layanan Barameru Adventure</p>
+        </div>
+
+        <div class="org">
+          <!-- Level 1 -->
+          <div class="org-level" data-aos="fade-up">
+            <div class="org-card top simple">
+              <div class="avatar"><i class="bi bi-person-badge-fill"></i></div>
+              <h5>Pemilik</h5>
+            </div>
+          </div>
+
+          <!-- Garis turun dari Pemilik -->
+          <div class="org-stem"></div>
+
+          <!-- Level 2: panah ke Kasir, Staf Gudang, Staf Perawatan -->
+          <div class="row g-4 justify-content-center org-row">
+            <div class="col-12 col-md-4 col-lg-3 org-branch" data-aos="fade-up" data-aos-delay="100">
+              <div class="org-conn"><span class="ah"></span></div>
+              <div class="org-card simple">
+                <div class="avatar"><i class="bi bi-cash-coin"></i></div>
+                <h5>Kasir</h5>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 org-branch" data-aos="fade-up" data-aos-delay="200">
+              <div class="org-conn"><span class="ah"></span></div>
+              <div class="org-card simple">
+                <div class="avatar"><i class="bi bi-box-seam-fill"></i></div>
+                <h5>Staf Gudang</h5>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 org-branch" data-aos="fade-up" data-aos-delay="300">
+              <div class="org-conn"><span class="ah"></span></div>
+              <div class="org-card simple">
+                <div class="avatar"><i class="bi bi-tools"></i></div>
+                <h5>Staf Perawatan</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRODUK & HARGA ===================== -->
+    <section id="produk" class="section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Katalog & Pricelist</h2>
+          <p>Temukan perlengkapan camping dan mendaki dengan harga sewa terjangkau.</p>
+        </div>
+
+        <!-- Syarat & Ketentuan -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-8" data-aos="fade-up">
+            <div class="rules-card">
+              <h4><i class="bi bi-shield-check"></i> Syarat & Ketentuan Sewa</h4>
+              <ol>
+                <li>Peminjam harus meninggalkan kartu identitas (KTP / SIM / KTM).</li>
+                <li>Kerusakan dan kehilangan menjadi tanggung jawab peminjam.</li>
+                <li>Maksimal pengembalian pukul <strong>21.00 WIB</strong>.</li>
+                <li>Pengembalian lebih dari 21.00 WIB dianggap memperpanjang sewa <strong>1 hari</strong>.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Katalog yang disewakan -->
+        <h3 class="text-center mb-4" data-aos="fade-up">Pilihan Perlengkapan</h3>
+
+        <ul class="filters" id="productFilters" data-aos="fade-up">
+          <li class="active" data-filter="all">Semua</li>
+          <li data-filter="paket">Paket</li>
+          <li data-filter="tenda">Tenda</li>
+          <li data-filter="tidur">Sleeping System</li>
+          <li data-filter="tas">Tas</li>
+          <li data-filter="masak">Cooking Set</li>
+          <li data-filter="lampu">Penerangan</li>
+          <li data-filter="pakaian">Pakaian & Lainnya</li>
+        </ul>
+
+        <!-- Kartu produk dirender oleh assets/js/main.js (hanya nama produk & harga) -->
+        <div class="row g-4" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== LOKASI / MAPS ===================== -->
+    <section id="lokasi" class="section bg-soft">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Lokasi Kami</h2>
+          <p>Mudah dijangkau di kawasan Condongcatur, Depok, Sleman</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-8" data-aos="fade-up">
+            <div class="map-wrap">
+              <iframe
+                title="Lokasi Barameru Adventure"
+                src="https://www.google.com/maps?q=Jl.+Tantular+No.427c,+Pringwulung,+Condongcatur,+Depok,+Yogyakarta+55281&output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+            <div class="info-box h-100">
+              <h5><i class="bi bi-geo-alt-fill"></i> Alamat</h5>
+              <p>Jl. Tantular No.427c, Pringwulung, Condongcatur, Kec. Depok, Yogyakarta, Daerah Istimewa Yogyakarta 55281</p>
+              <hr>
+              <h5><i class="bi bi-clock-history"></i> Jam Operasional</h5>
+              <table class="table table-borderless mb-0">
+                <tbody>
+                  <tr><td class="ps-0">Senin – Sabtu</td><td class="text-end fw-semibold pe-0">09.00 – 21.00 WIB</td></tr>
+                  <tr><td class="ps-0">Minggu</td><td class="text-end fw-semibold pe-0">13.00 – 21.00 WIB</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Frequently Asked Questions (FAQ)</h2>
+          <p>Pertanyaan yang sering diajukan seputar penyewaan di Barameru Adventure</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9" data-aos="fade-up">
+            <div class="accordion faq-list" id="faqList">
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                  1. Apa saja perlengkapan yang tersedia di Barameru Adventure?
+                </button>
+              </h3>
+              <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Barameru Adventure menyediakan berbagai perlengkapan camping dan mendaki, seperti tenda, carrier, sleeping bag, perlengkapan memasak, alat penerangan, pakaian, dan sepatu gunung.</div>
+              </div>
+            </div>
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                  2. Apakah tersedia paket penyewaan untuk pendakian?
+                </button>
+              </h3>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Ya, tersedia paket hemat untuk kebutuhan pendakian dengan pilihan kapasitas 2 orang, 3 orang, dan 4 orang.</div>
+              </div>
+            </div>
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                  3. Apa persyaratan untuk menyewa perlengkapan?
+                </button>
+              </h3>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Penyewa diwajibkan meninggalkan kartu identitas berupa KTP, SIM, atau KTM selama masa penyewaan.</div>
+              </div>
+            </div>
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                  4. Bagaimana jika perlengkapan yang disewa mengalami kerusakan atau hilang?
+                </button>
+              </h3>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Kerusakan dan kehilangan perlengkapan menjadi tanggung jawab penyewa sesuai ketentuan penyewaan yang berlaku.</div>
+              </div>
+            </div>
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                  5. Kapan batas waktu pengembalian perlengkapan?
+                </button>
+              </h3>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Pengembalian perlengkapan maksimal pukul 21.00 WIB. Pengembalian setelah waktu tersebut dianggap sebagai perpanjangan masa sewa selama 1 hari.</div>
+              </div>
+            </div>
+            <div class="accordion-item faq-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                  6. Di mana lokasi dan jam operasional Barameru Adventure?
+                </button>
+              </h3>
+              <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqList">
+                <div class="accordion-body text-justify">Barameru Adventure berlokasi di Jl. Tantular No.427c, Condongcatur, Depok, Sleman, Yogyakarta. Jam operasional Senin–Sabtu pukul 09.00–21.00 WIB dan Minggu pukul 13.00–21.00 WIB.</div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== KONTAK ===================== -->
+    <section id="kontak" class="section bg-soft">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Hubungi Kami</h2>
+          <p>Tanya ketersediaan alat dan pesan sekarang</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-5 contact-col">
+            <div class="row g-3">
+              <div class="col-12" data-aos="fade-up">
+                <div class="contact-item"><i class="bi bi-whatsapp"></i>
+                  <div><h6>WhatsApp</h6>
+                    <a href="https://wa.me/6285740778307" target="_blank" rel="noopener">0857-4077-8307</a>
+                  </div></div>
+              </div>
+              <div class="col-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-item"><i class="bi bi-instagram"></i>
+                  <div><h6>Instagram</h6>
+                    <a href="https://www.instagram.com/sewa.alat.camping.jogja" target="_blank" rel="noopener">@sewa.alat.camping.jogja</a></div></div>
+              </div>
+              <div class="col-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-item"><i class="bi bi-tiktok"></i>
+                  <div><h6>TikTok</h6>
+                    <a href="https://www.tiktok.com/@sewa.alat.camping.jogja" target="_blank" rel="noopener">@sewa.alat.camping.jogja</a></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form pesan -> dikirim ke WhatsApp -->
+          <div class="col-lg-7" data-aos="fade-up">
+            <form id="orderForm" class="order-form">
+              <h5 class="mb-3">Kirim Pesan via WhatsApp</h5>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" id="fName" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="date" id="fDate" class="form-control" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" id="fItem" class="form-control" placeholder="Alat yang ingin disewa (mis. Paket 3 orang gunung)" required>
+                </div>
+                <div class="col-12">
+                  <textarea id="fMsg" class="form-control" rows="4" placeholder="Pesan tambahan (lama sewa, jumlah, dll.)"></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-main"><i class="bi bi-whatsapp me-1"></i> Kirim ke WhatsApp</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center mb-3">
+            <img src="assets/img/logo.jpg" class="logo-img me-2" alt="Logo">
+            <span class="sitename text-white">Barameru <span>Adventure</span></span>
+          </div>
+          <p>Sewa alat camping dan mendaki di Yogyakarta.</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6>Menu</h6>
+          <ul class="list-unstyled">
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#struktur">Struktur</a></li>
+            <li><a href="#produk">Produk & Harga</a></li>
+            <li><a href="#lokasi">Lokasi</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-4">
+          <h6>Kontak</h6>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i>Jl. Tantular No.427c, Condongcatur, Depok, Yogyakarta 55281</p>
+          <p class="mb-0"><i class="bi bi-telephone me-2"></i>0857-4077-8307</p>
+        </div>
+      </div>
+      <div class="copyright text-center">
+        © <span id="year"></span> <strong>Barameru Adventure</strong>. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scrollTop" class="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Hapus tombol "Sewa" pada kartu produk (kartu dirender oleh main.js) -->
+  <script>
+    (function () {
+      var grid = document.getElementById('productGrid');
+      if (!grid) return;
+      function clean() {
+        // hapus label "Hemat" pada kartu produk
+        grid.querySelectorAll('*').forEach(function (el) {
+          if (el.children.length === 0 && /^\s*hemat\s*$/i.test(el.textContent)) el.remove();
+        });
+        grid.querySelectorAll('.bi-whatsapp').forEach(function (ic) {
+          var el = ic.closest('a, button');
+          if (el && grid.contains(el)) el.remove();
+        });
+      }
+      clean();
+      new MutationObserver(clean).observe(grid, { childList: true, subtree: true });
+    })();
+  </script>
+</body>
+
+</html>
